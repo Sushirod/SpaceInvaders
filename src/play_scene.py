@@ -1,10 +1,12 @@
 from Scene import Scene
+from ship import Ship
 import pygame
 
 class PlayScene(Scene):
     def __init__(self, app):
         self.app = app
         self.screen = app.screen
+        self.ship = Ship(app)
         super().__init__('PlayScene')
 
     def start(self):
@@ -20,7 +22,7 @@ class PlayScene(Scene):
 
     def draw(self):
         self.screen.fill((255,255,255))
-        pygame.draw.circle(self.screen,(255,0,0),(self.app.width/2,self.app.height/2), 30)
+        self.ship.draw()
 
     def exit(self):
         print('Termina:', self.name)
