@@ -9,14 +9,15 @@ class PyagemApp():
         self.active_scene = None
         self.width = 800
         self.height = 600
+        self.font = None
         self.init_pygame()
 
     def init_pygame(self):
         pygame.init()
         self.screen = pygame.display.set_mode((self.width,self.height))
         self.clock = pygame.time.Clock()
-        self.scenes = {'intro': IntroScene(self), 'play': PlayScene(self)}
         self.load_assets()
+        self.scenes = {'intro': IntroScene(self), 'play': PlayScene(self)}
         self.change_scene('intro')
 
     def change_scene(self, scene_name):
@@ -27,7 +28,7 @@ class PyagemApp():
 
 
     def load_assets(self):
-        pass
+        self.font = pygame.font.Font('assets/fonts/DOSIS-SEMIBOLD.TTF', 62)
 
     def process_events(self):
         for event in pygame.event.get():
