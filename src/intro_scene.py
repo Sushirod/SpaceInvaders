@@ -5,7 +5,7 @@ class IntroScene(Scene):
     def __init__(self, app):
         self.app = app
         self.screen = app.screen
-        self.title = app.font.render("Invaders", True, (255,255,255))
+        self.title = app.font.render("SPACE INVADERS", True, (255,255,255))
         self.title_rect = self.title.get_rect()
         self.title_rect.center = (app.width//2, app.height//2)
         super().__init__('IntroScene')
@@ -24,7 +24,6 @@ class IntroScene(Scene):
     def draw(self):
         self.screen.fill((0,0,0))
         self.screen.blit(self.title, self.title_rect)
-        pygame.draw.circle(self.screen,(255,0,0),(self.app.width/2,self.app.height/2), 30)
 
     def exit(self):
         print('Termina:', self.name)
