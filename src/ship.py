@@ -7,18 +7,25 @@ class Ship:
         self.image = pygame.image.load("assets/images/ship.png")
         self.rect = self.image.get_rect()
         self.rect.midbottom = self.screen_rect.midbottom
-        self.speed = 0.15
+        self.maxscreen = self.screen_rect.width - 40
+        self.speed = 0.3
         self.x = float(self.rect.x)
         self.move_right = False
         self.move_left = False
-        self.border = self.rect.x + self.rect.width - 10
+        self.tam = self.x
 
     def draw(self):
         self.screen.blit(self.image, self.rect)
     
     def update(self):
-        if self.move_left and self.border < self.screen_rect.width:
+        tam = self.x
+        if self.move_left and self.rect.x  > 0:
             self.x -= self.speed
-        if self.move_right and self.border > 0:
-            self.x += self.speed
+        if self.move_right and self.tam:
+            self.x += self.speed 
+            print(self.maxscreen)
+            print(tam)
+        if self.x >= self.maxscreen:
+            self.x = self.maxscreen
+
         self.rect.x = self.x

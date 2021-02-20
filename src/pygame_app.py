@@ -39,7 +39,6 @@ class PyagemApp():
     def update(self):
         self.active_scene.update()
 
-
     def draw(self):
         pygame.display.flip()
         self.active_scene.draw()
