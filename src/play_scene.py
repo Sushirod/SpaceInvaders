@@ -11,6 +11,8 @@ class PlayScene(Scene):
     def __init__(self, app):
         self.app = app
         self.screen = app.screen
+        self.image = pygame.image.load("assets/images/fondofinal.jpg")
+        self.rect = self.image.get_rect()
         self.lscore = score
         self.title = app.font2.render("Score: " + str(self.lscore), True, (0,0,0))
         self.title_rect = self.title.get_rect()
@@ -73,7 +75,7 @@ class PlayScene(Scene):
         self.lscore = score
 
     def draw(self):
-        self.screen.fill((255,255,255))
+        self.screen.blit(self.image, self.rect)
         self.screen.blit(self.title, self.title_rect)
         self.ship.draw()
         for alien in self.alienslist:

@@ -33,7 +33,7 @@ class PyagemApp():
     def load_assets(self): 
         self.font = pygame.font.Font('assets/fonts/DOSIS-SEMIBOLD.TTF', 62)
         self.font2 = pygame.font.Font('assets/fonts/DOSIS-SEMIBOLD.TTF', 20)
-        self.font3 = pygame.font.Font('assets/fonts/DOSIS-SEMIBOLD.TTF', 25)
+        self.font3 = pygame.font.Font('assets/fonts/DOSIS-SEMIBOLD.TTF', 25 )
 
     def process_events(self):
         for event in pygame.event.get():

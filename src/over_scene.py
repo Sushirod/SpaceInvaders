@@ -16,6 +16,12 @@ class GameOverScene(Scene):
         self.title = app.font2.render("Tu score fue: " + str(self.scoref), True, (255,255,255))
         self.title_rect = self.title.get_rect()
         self.title_rect.center = (200, app.height-300)
+
+
+        self.title3 = app.font3.render("Presiona cualquier tecla para volver a jugar ", True, (255,255,255))
+        self.title3_rect = self.title.get_rect()
+        self.title3_rect.center = (200, app.height-200)
+
         super().__init__('GameOverScene')
 
     def start(self):
@@ -38,6 +44,7 @@ class GameOverScene(Scene):
         self.screen.fill((0,0,0))
         self.screen.blit(self.title, self.title_rect)
         self.screen.blit(self.title2, self.title2_rect)
+        self.screen.blit(self.title3, self.title3_rect)
 
     def exit(self):
         print('Termina:', self.name)
