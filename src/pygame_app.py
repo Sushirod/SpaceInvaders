@@ -1,6 +1,8 @@
 import pygame
+import asyncio
 from intro_scene import  IntroScene
 from play_scene import PlayScene
+
 
 class PyagemApp():
     def __init__(self):

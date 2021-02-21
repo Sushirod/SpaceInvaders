@@ -1,6 +1,6 @@
 import pygame
 
-class Alien:
+class Bullet:
     def __init__(self, app, x , y):
         self.screen = app.screen
         self.screen_rect = app.screen.get_rect()
@@ -22,7 +22,10 @@ class Alien:
             self.x += self.speed
         if (direccion == "izq"):
             self.x -= self.speed
-
+        if(touchwall):
+            self.incremento()
+            print("entre")
+            touchwall = False
         self.y += self.yspeed
         self.rect.x = self.x
         self.rect.y = self.y

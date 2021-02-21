@@ -2,6 +2,8 @@ from Scene import Scene
 from ship import Ship
 from alien import Alien
 import pygame
+import asyncio
+import time
 
 class PlayScene(Scene):
     def __init__(self, app):
@@ -36,8 +38,14 @@ class PlayScene(Scene):
             alien.update(self.direccion, self.touchwall)
             if(alien.x < 0):
                 self.direccion = "der"
+                for alien in self.alienslist:
+                    alien.yspeed += 0.006
             elif(alien.x > self.app.width- 30):
                 self.direccion = "izq"
+                for alien in self.alienslist:
+                    alien.yspeed += 0.006
+            if(alien.y > self.app.height- self.ship.y):
+                self.app.change_scene('play')
     def draw(self):
         self.screen.fill((255,255,255))
         self.ship.draw()
@@ -52,3 +60,4 @@ class PlayScene(Scene):
             for j in range(50, 200, 50):
                 self.alien = Alien(self, i, j)
                 self.alienslist.append(self.alien)
+    
