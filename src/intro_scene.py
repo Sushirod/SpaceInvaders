@@ -9,7 +9,7 @@ class IntroScene(Scene):
         self.title_rect = self.title.get_rect()
         self.title_rect.center = (app.width//2, app.height//2)
 
-        self.title2 = app.font2.render("Usa las flechas y la tecla de espacio!!", True, (255,255,255))
+        self.title2 = app.font2.render("Usa las flechas y la tecla espacio!!", True, (255,255,255))
         self.title2_rect = self.title.get_rect()
         self.title2_rect.center = (400, app.height-250)
 

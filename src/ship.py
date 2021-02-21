@@ -15,10 +15,10 @@ class Ship:
         self.move_left = False
         self.tam = self.x
         self.bulletlist = []
-        self.number_bullets = 10
+        self.number_bullets = 8
         self.shooting = False
         self.last_fire = pygame.time.get_ticks()
-        self.cooldown = 200
+        self.cooldown = 220
 
     def start(self):
         self.charge()
