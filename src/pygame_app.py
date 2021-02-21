@@ -2,6 +2,7 @@ import pygame
 import asyncio
 from intro_scene import  IntroScene
 from play_scene import PlayScene
+from over_scene import GameOverScene
 
 
 class PyagemApp():
@@ -19,11 +20,11 @@ class PyagemApp():
         self.screen = pygame.display.set_mode((self.width,self.height))
         self.clock = pygame.time.Clock()
         self.load_assets()
-        self.scenes = {'intro': IntroScene(self), 'play': PlayScene(self)}
+        self.scenes = {'intro': IntroScene(self), 'play': PlayScene(self), 'over': GameOverScene(self)}
         self.change_scene('intro')
 
     def change_scene(self, scene_name):
-        if self.active_scene is not None:
+        if self.active_scene is not None: 
             self.active_scene.exit()
         self.active_scene = self.scenes[scene_name]
         self.active_scene.start()

@@ -22,7 +22,6 @@ class Alien:
             self.x += self.speed
         if (direccion == "izq"):
             self.x -= self.speed
-
         self.y += self.yspeed
         self.rect.x = self.x
         self.rect.y = self.y
