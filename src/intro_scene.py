@@ -15,7 +15,6 @@ class IntroScene(Scene):
 
     def process_events(self, event):
         if event.type == pygame.KEYDOWN:
-            print('Se presiono una tecla')
             self.app.change_scene('play')
 
     def update(self):

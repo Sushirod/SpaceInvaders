@@ -55,6 +55,8 @@ class PlayScene(Scene):
                 self.app.change_scene('over')
                 self.__init__(self.app)
                 self.start()
+        
+        self.collisions()
 
     def draw(self):
         self.screen.fill((255,255,255))
@@ -66,8 +68,20 @@ class PlayScene(Scene):
         print('Termina:', self.name)
 
     def aliens(self):
-        for i in range(50, self.app.width-50, 80):
+        self.alienslist.clear()
+        for i in range(50, self.app.width-50, 100):
             for j in range(50, 200, 50):
                 self.alien = Alien(self, i, j)
                 self.alienslist.append(self.alien)
+
+    def collisions(self):
+        for bullet in self.ship.bulletlist:
+            for alien in self.alienslist:
+                if bullet.active == True:
+                    if(bullet.rect.x < alien.x + alien.rect.width and 
+                    bullet.rect.x + bullet.rect.width > alien.rect.x and
+                    bullet.rect.y < alien.rect.y + alien.rect.height and
+                    bullet.rect.y + bullet.rect.height> alien.rect.y):
+                        bullet.active = False
+                        self.alienslist.remove(alien)
     

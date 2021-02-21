@@ -21,7 +21,7 @@ class Ship:
         self.cooldown = 200
 
     def start(self):
-        self.weapon()
+        self.charge()
 
     def draw(self):
         self.screen.blit(self.image, self.rect)
@@ -29,7 +29,6 @@ class Ship:
             bullet.draw()
     
     def update(self):
-        tam = self.x
         if self.move_left and self.rect.x  > 0:
             self.x -= self.speed
         if self.move_right and self.tam:
@@ -50,7 +49,7 @@ class Ship:
         if(self.shooting):
             self.shoot(self.x + 15, self.rect.y-10)
     
-    def weapon(self):
+    def charge(self):
         for i in range(self.number_bullets):
             bullet = Bullet(self)
             self.bulletlist.append(bullet)

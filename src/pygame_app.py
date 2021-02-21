@@ -30,7 +30,7 @@ class PyagemApp():
         self.active_scene.start()
 
 
-    def load_assets(self):
+    def load_assets(self): 
         self.font = pygame.font.Font('assets/fonts/DOSIS-SEMIBOLD.TTF', 62)
 
     def process_events(self):
