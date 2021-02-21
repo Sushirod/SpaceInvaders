@@ -1,5 +1,6 @@
 from Scene import Scene
 from ship import Ship
+from alien import Alien
 import pygame
 
 class PlayScene(Scene):
@@ -7,6 +8,7 @@ class PlayScene(Scene):
         self.app = app
         self.screen = app.screen
         self.ship = Ship(app)
+        self.alien = Alien(app)
         super().__init__('PlayScene')
 
     def start(self):
@@ -27,10 +29,12 @@ class PlayScene(Scene):
 
     def update(self):
         self.ship.update()
+        self.alien.update()
 
     def draw(self):
         self.screen.fill((255,255,255))
         self.ship.draw()
+        self.alien.draw()
 
     def exit(self):
         print('Termina:', self.name)
