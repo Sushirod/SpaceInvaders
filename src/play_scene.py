@@ -5,10 +5,16 @@ import pygame
 import asyncio
 import time
 
+score = 0
+
 class PlayScene(Scene):
     def __init__(self, app):
         self.app = app
         self.screen = app.screen
+        self.lscore = score
+        self.title = app.font2.render("Score: " + str(self.lscore), True, (0,0,0))
+        self.title_rect = self.title.get_rect()
+        self.title_rect.center = (app.width//2, app.height//2)
         self.ship = Ship(app)
         self.alienslist = []
         self.direccion = "izq"
@@ -19,6 +25,11 @@ class PlayScene(Scene):
         print('Se inicia:', self.name)
         self.aliens()
         self.ship.start()
+        self.title_rect.x = 10
+        self.title_rect.y = 10
+        self.lscore = 0
+        global score
+        score = 0
 
     def process_events(self, event):
         if event.type == pygame.KEYDOWN:
@@ -39,27 +50,31 @@ class PlayScene(Scene):
 
     def update(self):
         self.ship.update()
-
+        self.title = self.app.font2.render("Score: " + str(self.lscore), True, (0,0,0))
         for alien in self.alienslist:
             alien.update(self.direccion, self.touchwall)
             if(alien.x < 0):
                 self.direccion = "der"
                 for alien in self.alienslist:
-                    alien.yspeed += 0.006
+                    alien.yspeed += 0.008
             elif(alien.x > self.app.width- 30):
                 self.direccion = "izq"
                 for alien in self.alienslist:
-                    alien.yspeed += 0.006
+                    alien.yspeed += 0.008
 
             if(alien.y > self.app.height-80):
                 self.app.change_scene('over')
-                self.__init__(self.app)
-                self.start()
         
+        if(len(self.alienslist)<= 0):
+            self.aliens()
+
         self.collisions()
+        global score
+        self.lscore = score
 
     def draw(self):
         self.screen.fill((255,255,255))
+        self.screen.blit(self.title, self.title_rect)
         self.ship.draw()
         for alien in self.alienslist:
             alien.draw()
@@ -68,7 +83,8 @@ class PlayScene(Scene):
         print('Termina:', self.name)
 
     def aliens(self):
-        self.alienslist.clear()
+        if(len(self.alienslist)>= 1):
+            self.alienslist.clear()
         for i in range(50, self.app.width-50, 100):
             for j in range(50, 200, 50):
                 self.alien = Alien(self, i, j)
@@ -84,4 +100,10 @@ class PlayScene(Scene):
                     bullet.rect.y + bullet.rect.height> alien.rect.y):
                         bullet.active = False
                         self.alienslist.remove(alien)
+                        global score
+                        score += 1
+                        print(self.lscore)
+
+    def getscore(self):
+        return score
     

@@ -9,7 +9,7 @@ class Alien:
         self.rect.x = x
         self.rect.y = y
         self.speed = 0.1
-        self.yspeed = 0.02
+        self.yspeed = 0.05
         self.maxscreen = self.screen_rect.width - 140
         self.x = float(self.rect.x)
         self.y = float(self.rect.y)

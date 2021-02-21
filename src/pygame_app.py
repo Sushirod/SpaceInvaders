@@ -13,6 +13,7 @@ class PyagemApp():
         self.width = 650
         self.height = 650
         self.font = None
+        self.font2 = None
         self.init_pygame()
 
     def init_pygame(self):
@@ -29,9 +30,9 @@ class PyagemApp():
         self.active_scene = self.scenes[scene_name]
         self.active_scene.start()
 
-
     def load_assets(self): 
         self.font = pygame.font.Font('assets/fonts/DOSIS-SEMIBOLD.TTF', 62)
+        self.font2 = pygame.font.Font('assets/fonts/DOSIS-SEMIBOLD.TTF', 20)
 
     def process_events(self):
         for event in pygame.event.get():
