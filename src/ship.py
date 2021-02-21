@@ -23,8 +23,6 @@ class Ship:
             self.x -= self.speed
         if self.move_right and self.tam:
             self.x += self.speed 
-            print(self.maxscreen)
-            print(tam)
         if self.x >= self.maxscreen:
             self.x = self.maxscreen
 

@@ -8,11 +8,14 @@ class PlayScene(Scene):
         self.app = app
         self.screen = app.screen
         self.ship = Ship(app)
-        self.alien = Alien(app)
+        self.alienslist = []
+        self.direccion = "izq"
+        self.touchwall = False
         super().__init__('PlayScene')
 
     def start(self):
         print('Se inicia:', self.name)
+        self.aliens()
 
     def process_events(self, event):
         if event.type == pygame.KEYDOWN:
@@ -29,12 +32,23 @@ class PlayScene(Scene):
 
     def update(self):
         self.ship.update()
-        self.alien.update()
-
+        for alien in self.alienslist:
+            alien.update(self.direccion, self.touchwall)
+            if(alien.x < 0):
+                self.direccion = "der"
+            elif(alien.x > self.app.width- 30):
+                self.direccion = "izq"
     def draw(self):
         self.screen.fill((255,255,255))
         self.ship.draw()
-        self.alien.draw()
+        for alien in self.alienslist:
+            alien.draw()
 
     def exit(self):
         print('Termina:', self.name)
+
+    def aliens(self):
+        for i in range(50, self.app.width-50, 80):
+            for j in range(50, 200, 50):
+                self.alien = Alien(self, i, j)
+                self.alienslist.append(self.alien)
