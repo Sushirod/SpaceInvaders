@@ -7,8 +7,8 @@ class PyagemApp():
         self.running = True
         self.fps = 60
         self.active_scene = None
-        self.width = 800
-        self.height = 600
+        self.width = 650
+        self.height = 650
         self.font = None
         self.init_pygame()
 
@@ -38,7 +38,6 @@ class PyagemApp():
 
     def update(self):
         self.active_scene.update()
-
 
     def draw(self):
         pygame.display.flip()
